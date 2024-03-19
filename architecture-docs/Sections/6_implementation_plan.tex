@@ -1,0 +1,46 @@
+\section{Implementation Plan}
+\subsection{Milestone 2 - Vehicle API (VAPI)}
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+    \item Set up a base image and environment
+    \item Implement single spoofed sensor
+    \item Define data format based on project document (Vehicle Parameters of Interest)
+    \item Define basic interface for which data will be sent ``off-vehicle.''
+    \item Define relevant transfer functions (to be discussed on a later class) for sensor data to pre-processed before being sent.
+    \item Use a push architecture to send data periodically in a test scenario
+    \item Test system by creating some logs while vehicle parameters of interest vary over time
+\end{itemize}
+
+\subsection{Milestone 3 - Gateway}
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+    \item Observe other gateways (possibly ones that I have worked with in the past)
+    \item Define barebones ``needs'' and capabilities for this gateway
+    \item Implement recieving messages from VAPI (push architecture)
+    \item Implement forwarding messages to cloud broker
+    \item Test gateway sending data to a remote cloud server (remote server just ``eats'' the data, does nothing with it yet
+\end{itemize}
+
+\subsection{Milestone 4 - Message Broker}
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+    \item Read others usages of MQTT (Mosquitto) message broker including usage in docker containers / VMs.
+    \item Implement a simple MQTT service by doing the following
+    \item Get a publisher to attach to MQTT topic
+    \item Get a client to subscribe to MQTT topic
+    \item Successfully publish a message (and thus use the pub. sub. architecture of MQTT that is built in
+    \item Try hooking up with gateway to publish some messages that the gateway could forward from the vehicle
+\end{itemize}
+
+\subsection{Milestone 5 - Database and Dashboard \textbf{Possible Project Extension}}
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+    \item Deploy a Prometheus instance and Grafana instance to own hardware
+    \item Configure services to be accessible over the web (via my own domain name)
+    \item Test Prometheus + Grafana's capabilities by generating some canned data
+    \item Subscribe the Prometheus metric management to the MQTT gateway and prepare to receive messages from vehicles.
+    \item Test sending a sensor data message from the vehicle, to gateway, to broker, to Prometheus instance
+    \item View test data from Grafana instance
+    \item These services must run on a physically separate machine and must receive all of their communications over the internet.
+    \item Extra deliverable here: Document setup and provisioning of hardware (hypervisors, container management, (some of) the networking within reason to document the system.
+\end{itemize}
